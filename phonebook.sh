@@ -21,6 +21,14 @@ clear_phonebook() {
     > $FILE 
 }
 
+delete_items() {
+    sed -i "/$1/d" $FILE
+}
+
+get_items() {
+    sed -n "/$1/p" $FILE
+}
+
 create_phonebook $FILE
 
 if [ $1 == "new" ]; 
@@ -33,13 +41,17 @@ then
     list_phonebook
 elif [ $1 == "clear" ];
 then
-    echo "clear"
+    echo "Clearing phonebook..."
     clear_phonebook
 elif [ $1 == "lookup" ];
 then
-    echo "lookup"
-    sed -n "/$2/p" $FILE
+    echo "Getting matches for $2."
+    get_items $2
+elif [ $1 == "remove" ];
+then
+    echo "Removing all matches for $2."
+    delete_items $2
 else
-    echo "other"
+    echo "Invalid operation."
 fi
 
