@@ -17,6 +17,10 @@ list_phonebook(){
     cat $FILE 
 }
 
+clear_phonebook() {
+    > $FILE 
+}
+
 create_phonebook $FILE
 
 if [ $1 == "new" ]; 
@@ -27,6 +31,10 @@ elif [ $1 == "list" ];
 then
     echo "Listing phonebook items..."
     list_phonebook
+elif [ $1 == "clear" ];
+then
+    echo "clear"
+    clear_phonebook
 else
     echo "other"
 fi
