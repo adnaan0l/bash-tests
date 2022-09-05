@@ -35,6 +35,10 @@ elif [ $1 == "clear" ];
 then
     echo "clear"
     clear_phonebook
+elif [ $1 == "lookup" ];
+then
+    echo "lookup"
+    sed -n "/$2/p" $FILE
 else
     echo "other"
 fi
